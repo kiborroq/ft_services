@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: env-map
+data:
+  USER: "kiborroq"
+  PASSWORD: "kiborroq"
+  DATABASE: "wordpress"
+  HOST: "mysql-service"
+  PORT: "3306"
