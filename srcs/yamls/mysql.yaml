@@ -52,10 +52,6 @@ spec:
         - name: mysql
           image: mysql-image
           imagePullPolicy: Never
-          envFrom:
-            - prefix: MSQL_
-              configMapRef:
-                name: env-map
           ports:
             - containerPort: 3306
           volumeMounts:

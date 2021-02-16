@@ -39,9 +39,5 @@ spec:
         - name: wordpress
           image: wordpress-image
           imagePullPolicy: Never
-          envFrom:
-            - prefix: WP_
-              configMapRef:
-                name: env-map
           ports:
             - containerPort: 5050

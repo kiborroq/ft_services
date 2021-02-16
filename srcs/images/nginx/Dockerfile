@@ -6,7 +6,7 @@
 #    By: kiborroq <kiborroq@kiborroq.42.fr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/03 12:26:55 by kiborroq          #+#    #+#              #
-#    Updated: 2021/02/15 19:57:25 by kiborroq         ###   ########.fr        #
+#    Updated: 2021/02/16 22:06:46 by kiborroq         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,6 @@ RUN apk update
 RUN apk add openssh
 RUN apk add openssl
 RUN apk add nginx
-RUN apk add telegraf --repository http://dl-2.alpinelinux.org/alpine/edge/community
 RUN apk add supervisor
 
 # Adjust SSH
@@ -40,15 +39,10 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 RUN mkdir /www
 COPY index.html /www/index.html
 
-# Adjust TELEGRAF
-RUN mkdir -p /etc/telegraf
-COPY telegraf.conf /etc/telegraf/telegraf.conf
-
 # Adjut SUPERVISORD
 COPY supervisord.conf /etc/supervisord.conf
 
 # Declarate ports
 EXPOSE 80 443 22
 
-ENTRYPOINT ["/usr/bin/supervisord"]
-CMD ["-c", "/etc/supervisord.conf"]
+ENTRYPOINT ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]

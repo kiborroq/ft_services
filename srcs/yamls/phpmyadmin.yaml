@@ -39,9 +39,5 @@ spec:
         - name: phpmyadmin
           image: phpmyadmin-image
           imagePullPolicy: Never
-          envFrom:
-            - prefix: PMA_
-              configMapRef:
-                name: env-map
           ports:
             - containerPort: 5000

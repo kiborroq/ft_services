@@ -22,16 +22,19 @@ docker build -t wordpress-image  srcs/images/wordpress/
 docker build -t mysql-image      srcs/images/mysql/
 docker build -t influxdb-image   srcs/images/influxdb/
 docker build -t grafana-image    srcs/images/grafana/
+docker build -t telegraf-image   srcs/images/telegraf/
+docker build -t ftps-image       srcs/images/ftps/
 
 # Setup an infrastructure of services
 echo "Setup an infrastructure of services"
-kubectl apply -f srcs/yamls/envmap.yaml
 kubectl apply -f srcs/yamls/nginx.yaml
 kubectl apply -f srcs/yamls/phpmyadmin.yaml
 kubectl apply -f srcs/yamls/wordpress.yaml
 kubectl apply -f srcs/yamls/mysql.yaml
 kubectl apply -f srcs/yamls/influxdb.yaml
 kubectl apply -f srcs/yamls/grafana.yaml
+kubectl apply -f srcs/yamls/telegraf.yaml
+kubectl apply -f srcs/yamls/ftps.yaml
 
 # Start Kubernetes dashboard
 echo "Start Kubernetes dashboard"

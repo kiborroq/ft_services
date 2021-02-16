@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: kiborroq <kiborroq@kiborroq.42.fr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/02/01 00:34:14 by kiborroq          #+#    #+#              #
-#    Updated: 2021/02/16 22:19:18 by kiborroq         ###   ########.fr        #
+#    Created: 2021/02/11 23:29:57 by kiborroq          #+#    #+#              #
+#    Updated: 2021/02/16 23:47:40 by kiborroq         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,9 +15,13 @@ FROM alpine:3.12
 
 # Install necessary components
 RUN apk update
-RUN apk add influxdb
+RUN apk add telegraf --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/
+
+# Adjust TELEGRAF
+RUN mkdir -p /etc/telegraf
+COPY telegraf.conf /etc/telegraf/telegraf.conf
 
 # Declarate ports
-EXPOSE 8086
+EXPOSE 886
 
-ENTRYPOINT ["/usr/sbin/influxd", "-config", "etc/influxdb.conf"]
+ENTRYPOINT ["/usr/bin/telegraf", "--config", "/etc/telegraf/telegraf.conf"]
