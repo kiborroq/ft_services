@@ -6,7 +6,7 @@
 #    By: kiborroq <kiborroq@kiborroq.42.fr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/11 23:29:57 by kiborroq          #+#    #+#              #
-#    Updated: 2021/02/16 23:47:40 by kiborroq         ###   ########.fr        #
+#    Updated: 2021/02/18 01:25:15 by kiborroq         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 FROM alpine:3.12
 
 # Install necessary components
-RUN apk update
+RUN apk -U upgrade
 RUN apk add telegraf --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/
 
 # Adjust TELEGRAF

@@ -3,7 +3,11 @@
 # Delete and then start Minikube
 echo "Delete and then start Minikube"
 minikube delete
-minikube start --driver=virtualbox --memory='3000'
+minikube start --driver=virtualbox
+
+# Start Kubernetes dashboard
+echo "Start Kubernetes dashboard"
+minikube dashboard &
 
 # Adjust MetalLB
 echo "Adjust MetalLB"
@@ -14,28 +18,37 @@ kubectl apply -f srcs/yamls/metallb.yaml
 echo "Init Docker in Minikube"
 eval $(minikube docker-env)
 
-# Build all images
-echo "Build all images"
-docker build -t nginx-image      srcs/images/nginx/
-docker build -t phpmyadmin-image srcs/images/phpmyadm/
-docker build -t wordpress-image  srcs/images/wordpress/
-docker build -t mysql-image      srcs/images/mysql/
-docker build -t influxdb-image   srcs/images/influxdb/
-docker build -t grafana-image    srcs/images/grafana/
-docker build -t telegraf-image   srcs/images/telegraf/
-docker build -t ftps-image       srcs/images/ftps/
-
 # Setup an infrastructure of services
 echo "Setup an infrastructure of services"
-kubectl apply -f srcs/yamls/nginx.yaml
-kubectl apply -f srcs/yamls/phpmyadmin.yaml
-kubectl apply -f srcs/yamls/wordpress.yaml
-kubectl apply -f srcs/yamls/mysql.yaml
-kubectl apply -f srcs/yamls/influxdb.yaml
-kubectl apply -f srcs/yamls/grafana.yaml
-kubectl apply -f srcs/yamls/telegraf.yaml
-kubectl apply -f srcs/yamls/ftps.yaml
 
-# Start Kubernetes dashboard
-echo "Start Kubernetes dashboard"
-minikube dashboard & sleep 1
+echo "Setup NGINX"
+docker build -t nginx-img      srcs/images/nginx/
+kubectl apply -f               srcs/yamls/nginx.yaml
+
+echo "Setup PHPMYADMIN"
+docker build -t phpmyadmin-img srcs/images/phpmyadm/
+kubectl apply -f               srcs/yamls/phpmyadmin.yaml
+
+echo "Setup WRODPRESS"
+docker build -t wordpress-img  srcs/images/wordpress/
+kubectl apply -f               srcs/yamls/wordpress.yaml
+
+echo "Setup MYSQL"
+docker build -t mysql-img      srcs/images/mysql/
+kubectl apply -f               srcs/yamls/mysql.yaml
+
+echo "Setup INFLUXDB"
+docker build -t influxdb-img   srcs/images/influxdb/
+kubectl apply -f               srcs/yamls/influxdb.yaml
+
+echo "Setup GRAFANA"
+docker build -t grafana-img    srcs/images/grafana/
+kubectl apply -f               srcs/yamls/grafana.yaml
+
+echo "Setup TELEGRAF"
+docker build -t telegraf-img   srcs/images/telegraf/
+kubectl apply -f               srcs/yamls/telegraf.yaml
+
+echo "Setup FTPS"
+docker build -t ftps-img       srcs/images/ftps/
+kubectl apply -f               srcs/yamls/ftps.yaml

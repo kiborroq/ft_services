@@ -6,7 +6,7 @@
 #    By: kiborroq <kiborroq@kiborroq.42.fr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/10 20:41:07 by kiborroq          #+#    #+#              #
-#    Updated: 2021/02/16 22:41:14 by kiborroq         ###   ########.fr        #
+#    Updated: 2021/02/18 00:28:01 by kiborroq         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 FROM alpine:3.12
 
 # Install necessary components
-RUN apk update
+RUN apk -U upgrade
 RUN apk add nginx
 RUN apk add wget
 RUN apk add php7 php7-fpm php7-mbstring php7-zlib php7-json php7-session php7-mysqli php7-curl
@@ -30,10 +30,6 @@ RUN mkdir -p /www/phpmyadmin
 RUN tar -xf phpMyAdmin-5.0.4-all-languages.tar.gz --strip-components 1 -C /www/phpmyadmin
 RUN rm phpMyAdmin-5.0.4-all-languages.tar.gz
 COPY phpmyadmin.conf /www/phpmyadmin/config.inc.php
-
-# Adjust TELEGRAF
-RUN mkdir -p /etc/telegraf
-COPY telegraf.conf /etc/telegraf/telegraf.conf
 
 # Adjut SUPERVISORD
 COPY supervisord.conf /etc/supervisord.conf

@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: ftps-service
+  name: ftps-svc
   annotations:
     metallb.universe.tf/allow-shared-ip: shared
   labels:
@@ -58,7 +58,7 @@ spec:
     spec:
       containers:
         - name: ftps
-          image: ftps-image
+          image: ftps-img
           imagePullPolicy: Never
           ports:
             - containerPort: 80

@@ -6,7 +6,7 @@
 #    By: kiborroq <kiborroq@kiborroq.42.fr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/03 12:26:55 by kiborroq          #+#    #+#              #
-#    Updated: 2021/02/16 22:06:46 by kiborroq         ###   ########.fr        #
+#    Updated: 2021/02/18 00:27:48 by kiborroq         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 FROM alpine:3.12
 
 # Install necessary components
-RUN apk update
+RUN apk -U upgrade
 RUN apk add openssh
 RUN apk add openssl
 RUN apk add nginx

@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: influxdb-service
+  name: influxdb-svc
   labels:
     app: influxdb
 spec:
@@ -50,7 +50,7 @@ spec:
     spec:
       containers:
         - name: influxdb
-          image: influxdb-image
+          image: influxdb-img
           imagePullPolicy: Never
           ports:
             - containerPort: 8086
