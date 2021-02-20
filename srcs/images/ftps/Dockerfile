@@ -6,7 +6,7 @@
 #    By: kiborroq <kiborroq@kiborroq.42.fr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/01 00:34:14 by kiborroq          #+#    #+#              #
-#    Updated: 2021/02/18 00:27:38 by kiborroq         ###   ########.fr        #
+#    Updated: 2021/02/20 00:08:24 by kiborroq         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,8 +27,8 @@ RUN openssl req -x509 -newkey rsa:2048 -nodes -days 365 \
 # Adjust FTPS
 RUN mkdir -p /home/ftpusers/kiborroq
 RUN adduser -D -h /home/ftpusers/kiborroq kiborroq
+RUN echo "kiborroq:kiborroq" | chpasswd
 RUN echo -e "kiborroq\nkiborroq" | pure-pw useradd kiborroq -u kiborroq -d /home/ftpusers/kiborroq
-COPY ftps.conf /etc/vsftpd/vsftpd.conf
 
 # Declarate ports
 EXPOSE 21 21001 21002 21003 21004 21005

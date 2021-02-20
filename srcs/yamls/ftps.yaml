@@ -61,6 +61,9 @@ spec:
           image: ftps-img
           imagePullPolicy: Never
           ports:
-            - containerPort: 80
-            - containerPort: 443
-            - containerPort: 22
+            - containerPort: 21
+            - containerPort: 21001
+            - containerPort: 21002
+            - containerPort: 21003
+            - containerPort: 21004
+            - containerPort: 21005

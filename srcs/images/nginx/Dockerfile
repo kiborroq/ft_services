@@ -6,7 +6,7 @@
 #    By: kiborroq <kiborroq@kiborroq.42.fr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/03 12:26:55 by kiborroq          #+#    #+#              #
-#    Updated: 2021/02/18 00:27:48 by kiborroq         ###   ########.fr        #
+#    Updated: 2021/02/19 19:07:47 by kiborroq         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ RUN ssh-keygen -A
 RUN openssl req -x509 -newkey rsa:2048 -nodes -days 365 \
                 -subj "/C=RU/ST=Moscow/L=Moscow/O=21school/OU=kiborroq/CN=localhost" \
                 -keyout /etc/ssl/private/host.key \
-                -out /etc/ssl/certs/host.crt;
+                -out /etc/ssl/certs/host.crt
 
 # Adjust NGINX
 RUN mkdir /run/nginx
